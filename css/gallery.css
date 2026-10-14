@@ -1,0 +1,233 @@
+/* css/gallery.css */
+
+:root {
+    --gallery-gap: 5px;
+}
+
+
+/* Do not compensate here */
+
+.main-section {
+    position: relative;
+    overflow: visible;
+    margin: 0;
+}
+
+
+/* Compensate on the actual Isotope grid */
+
+.p-grid-isotope {
+    margin-left: calc(-1 * var(--gallery-gap));
+    margin-right: calc(-1 * var(--gallery-gap));
+    width: calc(100% + (2 * var(--gallery-gap)));
+}
+
+
+/* Include padding inside Isotope percentage widths */
+
+.main-section .grid-sizer,
+.p-grid-isotope .p-item {
+    box-sizing: border-box;
+    padding: var(--gallery-gap);
+}
+
+
+/* Desktop: 5 columns */
+
+.main-section .grid-sizer,
+.p-grid-isotope .p-item {
+    width: 20%;
+}
+
+
+/* Smaller desktop / large tablet: 4 columns */
+
+@media only screen and (max-width: 1200px) {
+    .main-section .grid-sizer,
+    .p-grid-isotope .p-item {
+        width: 25%;
+    }
+}
+
+
+/* Tablet: 3 columns */
+
+@media only screen and (max-width: 900px) {
+    .main-section .grid-sizer,
+    .p-grid-isotope .p-item {
+        width: 33.3333%;
+    }
+}
+
+
+/* Mobile / small tablet behavior */
+
+@media only screen and (max-width: 767px) {
+    body {
+        min-height: 100vh;
+        height: auto;
+        overflow-y: auto;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    header {
+        position: relative;
+        margin-left: calc(-1 * var(--page-x));
+        margin-right: calc(-1 * var(--page-x));
+    }
+    .main-section {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        margin: 0;
+    }
+    .portfolio-heading {
+        padding: 10px 0 14px;
+    }
+    .portfolio-heading h1 {
+        font-size: 24px;
+        letter-spacing: 1.5px;
+    }
+    .portfolio-heading p {
+        font-size: 12px;
+    }
+}
+
+
+/* Large phone / small tablet: 2 columns */
+
+@media only screen and (max-width: 600px) {
+    .main-section .grid-sizer,
+    .p-grid-isotope .p-item {
+        width: 50%;
+    }
+}
+
+
+/* Small phone: 1 column, smaller gap */
+
+@media only screen and (max-width: 420px) {
+     :root {
+        --gallery-gap: 5px;
+    }
+    .main-section .grid-sizer,
+    .p-grid-isotope .p-item {
+        width: 100%;
+    }
+}
+
+
+/* Existing styles */
+
+.main-section .grid-sizer a {
+    display: block;
+    transition: transform 0.5s;
+}
+
+.p-grid-isotope a:focus,
+.p-grid-isotope a:active,
+.p-grid-isotope a:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.p-grid-isotope .p-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-heading {
+    text-align: center;
+    padding: 20px 20px 20px;
+}
+
+.portfolio-heading h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.portfolio-heading p {
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.vbox-overlay {
+    z-index: 1040;
+}
+
+.vbox-close,
+.vbox-next,
+.vbox-prev {
+    z-index: 1050;
+}
+
+
+/* Gallery pages only: hide header when scrolling down, reveal when scrolling up */
+
+body {
+    padding-top: var(--header-h);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: var(--page-x);
+    right: var(--page-x);
+    height: var(--header-h);
+    z-index: 1000;
+    background: var(--bg);
+    transform: translateY(0);
+    transition: transform 0.25s ease;
+    will-change: transform;
+}
+
+body.gallery-header-hidden header {
+    transform: translateY(calc(-1 * var(--header-h)));
+}
+
+
+/* On mobile, keep header full-width like before */
+
+@media only screen and (max-width: 767px) {
+    body {
+        padding-top: var(--header-h);
+    }
+    header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+#password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 3rem auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#password-container input {
+    width: 140px;
+    box-sizing: border-box;
+}
+
+#password-container button {
+    margin-top: 0.75rem;
+}
+
+#password-container input {
+    width: 160px;
+}
+
+#password-container button {
+    width: 220px;
+}

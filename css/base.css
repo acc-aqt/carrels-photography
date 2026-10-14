@@ -1,0 +1,369 @@
+/* css/base.css */
+
+/* =========================================================
+   Shared site base
+   ========================================================= */
+
+   :root {
+    --page-x: 10px;
+    --header-h: 60px;
+    --footer-h: 60px;
+  
+    --text: #6C5D53;
+    --hover: #CCC3BD;
+    --bg: #fff;
+  
+    --nav-z: 100;
+    --menu-z: 101;
+  }
+  
+  /* =========================================================
+     Reset / base
+     ========================================================= */
+  
+  html {
+    font-size: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    touch-action: manipulation;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    min-height: 100vh;
+    margin: 0;
+    padding: var(--header-h) var(--page-x) 0;
+    font-family: "Poppins", serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    word-wrap: break-word;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  ul,
+  ol,
+  span,
+  li,
+  img,
+  input,
+  button,
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1,
+  h2,
+  h3 {
+    font-family: "Poppins", cursive;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.5;
+    font-weight: inherit;
+  }
+  
+  h1 {
+    font-size: 4em;
+    line-height: 1;
+  }
+  
+  h2 {
+    font-size: 2.2em;
+    line-height: 1.1;
+  }
+  
+  h3 {
+    font-size: 1.8em;
+  }
+  
+  p {
+    line-height: 1.6;
+    font-size: 1.05em;
+    color: var(--text);
+  }
+  
+  a,
+  button {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+    transition: all 0.25s ease-in-out;
+  }
+  
+  a:hover,
+  a:focus,
+  a:active,
+  button:hover,
+  button:focus,
+  button:active {
+    text-decoration: none;
+    color: var(--hover);
+  }
+  
+  button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  /* =========================================================
+     Header
+     ========================================================= */
+  
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  
+    height: var(--header-h);
+    padding: 0 var(--page-x);
+  
+    background: var(--bg);
+    text-align: center;
+    z-index: var(--nav-z);
+  }
+  
+  header::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  header .logo {
+    float: left;
+    height: 40px;
+    margin: 10px 0;
+  }
+  
+  header .logo img {
+    height: 100%;
+    width: auto;
+  }
+  
+  header .main-menu {
+    float: right;
+  }
+  
+  header .main-menu > li {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  header ul.main-menu > li > a,
+  header ul.main-menu > li > .portfolio-toggle {
+    height: var(--header-h);
+    line-height: var(--header-h);
+    padding: 0 15px;
+  }
+  
+  header .right-area {
+    float: right;
+    height: 100%;
+    line-height: var(--header-h);
+    margin-left: 20px;
+  }
+  
+  .menu-nav-icon {
+    display: none;
+    font-size: 30px;
+    line-height: 40px;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  /* =========================================================
+     Portfolio menu / dropdown
+     ========================================================= */
+  
+  .portfolio-nav {
+    position: relative;
+  }
+  
+  .portfolio-toggle {
+    background: none;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    height: var(--header-h);
+    line-height: var(--header-h);
+    padding: 0 15px;
+    text-align: left;
+  }
+  
+  .portfolio-toggle:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .portfolio-menu {
+    display: none !important;
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+  
+    z-index: var(--menu-z);
+    min-width: 230px;
+    margin: 0;
+    padding: 8px 0;
+  
+    list-style: none;
+    text-align: left;
+    background: var(--bg);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  }
+  
+  .portfolio-nav.is-open > .portfolio-menu {
+    display: block !important;
+  }
+  
+  .portfolio-menu li {
+    display: block;
+  }
+  
+  .portfolio-menu li a {
+    display: block;
+    padding: 7px 14px;
+    line-height: 1.25;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+  /* =========================================================
+     Footer
+     ========================================================= */
+  
+     footer {
+        position: static;
+      
+        height: var(--footer-h);
+        padding: 0 var(--page-x);
+        margin-left: calc(-1 * var(--page-x));
+        margin-right: calc(-1 * var(--page-x));
+      
+        overflow: hidden;
+        text-align: center;
+        background: var(--bg);
+      }
+
+  /* =========================================================
+     Shared layout helpers
+     ========================================================= */
+  
+  .site-content {
+    width: 100%;
+  }
+  
+  .main-section {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .menu-nav-icon {
+      display: block;
+      float: right;
+      position: relative;
+      z-index: 1002;
+      width: 44px;
+      height: var(--header-h);
+      line-height: var(--header-h);
+      margin: 0;
+      text-align: right;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+  
+    .menu-nav-icon i {
+      line-height: var(--header-h);
+    }
+  
+    header .main-menu {
+      display: none;
+      position: absolute;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      z-index: 1001;
+  
+      float: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+  
+      text-align: left;
+      background: var(--bg);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+  
+    header .main-menu.visible-menu {
+      display: block;
+    }
+  
+    header .main-menu > li {
+      display: block;
+    }
+  
+    header ul.main-menu > li > a,
+    header ul.main-menu > li > .portfolio-toggle {
+      display: block;
+      width: 100%;
+      height: auto;
+      line-height: 1.2;
+      padding: 18px var(--page-x);
+      border-top: 1px solid #eee;
+    }
+  
+    .portfolio-menu {
+      position: static;
+      min-width: 0;
+      margin: 0 !important;
+      padding: 0 0 0 20px !important;
+      box-shadow: none;
+      background: var(--bg);
+    }
+  
+    .portfolio-menu li a {
+      padding: 9px var(--page-x);
+    }
+  }

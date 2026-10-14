@@ -1,0 +1,28 @@
+/* css/page.css */
+
+.main-section,
+.regular-page,
+.page-content {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.main-section h2,
+.regular-page h2,
+.page-content h2 {
+  margin-bottom: 24px;
+}
+
+.main-section h3,
+.regular-page h3,
+.page-content h3 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+
+.main-section p,
+.regular-page p,
+.page-content p {
+  margin-bottom: 14px;
+}
