@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const portfolioNav = document.querySelector(".portfolio-nav");
   const portfolioToggle = document.querySelector(".portfolio-toggle");
   const placeholder = document.querySelector("#portfolio-menu-placeholder");
+  const isGalleryPage = document.querySelector(".p-grid-isotope");
 
   menuIcon?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -29,23 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (placeholder) {
-    const pathPrefix =
-      window.location.pathname === "/" ||
-      window.location.pathname.endsWith("/index.html")
-        ? ""
-        : "../";
+    const pathPrefix = isGalleryPage ? "../" : "";
 
     fetch(`${pathPrefix}portfolio-menu.html`, { cache: "no-cache" })
       .then((res) => res.text())
       .then((html) => {
-        placeholder.innerHTML = html;
+        const template = document.createElement("template");
+        template.innerHTML = html;
+
+        if (!isGalleryPage) {
+          template.content.querySelectorAll('a[href^="../"]').forEach((link) => {
+            link.setAttribute("href", link.getAttribute("href").replace(/^\.\.\//, ""));
+          });
+        }
+
+        placeholder.replaceChildren(template.content);
       });
   }
 
 
   /* Gallery pages only: auto-hide header on scroll down, reveal on scroll up */
-const isGalleryPage = document.querySelector(".p-grid-isotope");
-
 if (isGalleryPage) {
   let lastScrollY = window.scrollY;
   let ticking = false;
