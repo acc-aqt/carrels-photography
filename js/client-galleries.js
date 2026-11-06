@@ -87,7 +87,7 @@
     if (!response.ok) throw new Error(response.status === 401 ? "Your gallery session expired. Enter the password again." : "Could not load this gallery.");
     const data = await response.json();
     title.textContent = data.title;
-    photos = data.images.map((photo) => ({ ...photo, url: addToken(photo.url, token), thumb: addToken(photo.thumb, token) }));
+    photos = data.images.map((photo) => ({ ...photo, url: addToken(photo.url, token) }));
     count.textContent = `${photos.length} photographs`;
     download.href = addToken(`${api}/download-all/${encodeURIComponent(slug)}`, token);
     grid.replaceChildren();
@@ -106,7 +106,7 @@
       button.className = "client-photo-button";
       button.setAttribute("aria-label", `View ${photo.name}`);
       const image = document.createElement("img");
-      image.src = photo.thumb;
+      image.src = photo.url;
       image.alt = photo.name;
       image.loading = "lazy";
       image.decoding = "async";
