@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Client galleries · carrels.photography</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="../logos/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/ionicons.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/gallery.css" />
+    <link rel="stylesheet" href="../css/client-pages.css" />
+  </head>
+  <body data-site-root="../">
+    <header>
+      <a class="logo" href="../index.html"><img src="../logos/logo.png" alt="Logo" /></a>
+      <a class="menu-nav-icon" data-menu="#main-menu" aria-label="Open menu"><i class="ion-navicon"></i></a>
+      <ul class="main-menu" id="main-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li class="portfolio-nav"><button type="button" class="portfolio-toggle" aria-expanded="false">Portfolio <i class="ion-arrow-down-b"></i></button><ul id="portfolio-menu-placeholder" class="portfolio-menu"></ul></li>
+        <li><a href="mailto:carrelsphotography@icloud.com">Contact</a></li>
+        <li><a href="https://www.instagram.com/carrels.photography/" aria-label="Instagram"><i class="ion-social-instagram-outline"></i></a></li>
+      </ul>
+    </header>
+    <main class="client-entry">
+      <p class="eyebrow">Private client galleries</p>
+      <h1>Your photographs</h1>
+      <p>Enter the gallery name from your link and the password you received to view and download your photographs.</p>
+      <form class="client-login-form" data-gallery-login>
+        <label for="gallery-slug">Gallery name</label>
+        <input id="gallery-slug" name="slug" type="text" autocomplete="off" placeholder="e.g. wedding-2026" required pattern="[a-z0-9][a-z0-9-]{0,62}" />
+        <label for="gallery-password">Password</label>
+        <input id="gallery-password" name="password" type="password" autocomplete="current-password" required maxlength="256" />
+        <p class="client-error" role="alert" hidden></p>
+        <button type="submit">Open gallery <span aria-hidden="true">→</span></button>
+      </form>
+    </main>
+    <script src="../js/menu.js"></script>
+    <script src="../js/client-gallery-config.js"></script>
+    <script src="../js/client-galleries.js"></script>
+  </body>
+</html>

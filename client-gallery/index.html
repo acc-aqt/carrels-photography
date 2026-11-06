@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Client gallery · carrels.photography</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="../logos/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/ionicons.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/gallery.css" />
+    <link rel="stylesheet" href="../css/client-pages.css" />
+  </head>
+  <body data-site-root="../">
+    <header>
+      <a class="logo" href="../index.html"><img src="../logos/logo.png" alt="Logo" /></a>
+      <a class="menu-nav-icon" data-menu="#main-menu" aria-label="Open menu"><i class="ion-navicon"></i></a>
+      <ul class="main-menu" id="main-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li class="portfolio-nav"><button type="button" class="portfolio-toggle" aria-expanded="false">Portfolio <i class="ion-arrow-down-b"></i></button><ul id="portfolio-menu-placeholder" class="portfolio-menu"></ul></li>
+        <li><a href="mailto:carrelsphotography@icloud.com">Contact</a></li>
+        <li><a href="https://www.instagram.com/carrels.photography/" aria-label="Instagram"><i class="ion-social-instagram-outline"></i></a></li>
+      </ul>
+    </header>
+    <section class="client-gallery-heading">
+      <p class="eyebrow">Private client gallery</p>
+      <h1 id="client-gallery-title">Your photographs</h1>
+      <p id="client-gallery-count">Loading gallery…</p>
+      <a class="client-download-all" id="download-all-images" href="#" hidden>Download all images <span aria-hidden="true">↓</span></a>
+    </section>
+    <main>
+      <section class="client-password-panel" id="gallery-password-panel" hidden>
+        <p class="eyebrow">Password protected</p>
+        <h1>Open your gallery</h1>
+        <p>Enter the password you received to view your photographs.</p>
+        <form class="client-login-form" data-gallery-login>
+          <input name="slug" type="hidden" />
+          <label for="client-gallery-password">Gallery password</label>
+          <input id="client-gallery-password" name="password" type="password" autocomplete="current-password" required maxlength="256" />
+          <p class="client-error" role="alert" hidden></p>
+          <button type="submit">Open gallery <span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+      <section class="main-section" id="gallery-content" hidden>
+        <div class="p-grid-isotope" id="client-gallery-grid"></div>
+      </section>
+    </main>
+    <dialog id="client-photo-viewer" aria-label="Photo viewer">
+      <button type="button" class="viewer-close" aria-label="Close">×</button>
+      <button type="button" class="viewer-previous" aria-label="Previous photo">‹</button>
+      <img alt="" />
+      <button type="button" class="viewer-next" aria-label="Next photo">›</button>
+      <div class="client-viewer-caption"><span class="viewer-count"></span><a class="viewer-download" download>Download image</a></div>
+    </dialog>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/isotope.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/client-gallery-config.js"></script>
+    <script src="../js/client-galleries.js"></script>
+  </body>
+</html>

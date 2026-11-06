@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const portfolioToggle = document.querySelector(".portfolio-toggle");
   const placeholder = document.querySelector("#portfolio-menu-placeholder");
   const isGalleryPage = document.querySelector(".p-grid-isotope");
+  const siteRoot = document.body.dataset.siteRoot ?? (isGalleryPage ? "../" : "");
+
+  const contactLink = mainMenu?.querySelector('a[href^="mailto:"]')?.closest("li");
+  if (contactLink && !mainMenu.querySelector('[data-client-menu-link]')) {
+    const clientItem = document.createElement("li");
+    clientItem.dataset.clientMenuLink = "true";
+    const clientLink = document.createElement("a");
+    clientLink.href = `${siteRoot}clients/`;
+    clientLink.textContent = "Clients";
+    clientItem.append(clientLink);
+    contactLink.before(clientItem);
+  }
 
   menuIcon?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -30,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (placeholder) {
-    const pathPrefix = isGalleryPage ? "../" : "";
+    const pathPrefix = siteRoot;
 
     fetch(`${pathPrefix}portfolio-menu.html`, { cache: "no-cache" })
       .then((res) => res.text())
@@ -38,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const template = document.createElement("template");
         template.innerHTML = html;
 
-        if (!isGalleryPage) {
+        if (!isGalleryPage && !document.body.dataset.siteRoot) {
           template.content.querySelectorAll('a[href^="../"]').forEach((link) => {
             link.setAttribute("href", link.getAttribute("href").replace(/^\.\.\//, ""));
           });
