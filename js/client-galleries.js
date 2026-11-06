@@ -121,6 +121,7 @@
       window.jQuery(grid).isotope({ itemSelector: ".p-item", percentPosition: true, masonry: { columnWidth: ".grid-sizer" } });
       if (window.jQuery.fn.imagesLoaded) window.jQuery(grid).imagesLoaded().progress(() => window.jQuery(grid).isotope("layout"));
     }
+    document.body.classList.add("client-gallery-loaded");
   }
 
   if (!slug || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(slug)) {
