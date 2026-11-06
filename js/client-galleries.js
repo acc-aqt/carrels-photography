@@ -60,6 +60,21 @@
     target.searchParams.set("token", token);
     return target.href;
   }
+  const lazyImageObserver = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const image = entry.target;
+          image.addEventListener("load", () => {
+            if (window.jQuery?.fn?.isotope) window.jQuery(grid).isotope("layout");
+          }, { once: true });
+          image.src = image.dataset.src;
+          image.removeAttribute("data-src");
+          observer.unobserve(image);
+        });
+      }, { rootMargin: "2500px 0px" })
+    : null;
+
   function openPhoto(index) {
     current = (index + photos.length) % photos.length;
     const photo = photos[current];
@@ -106,9 +121,10 @@
       button.className = "client-photo-button";
       button.setAttribute("aria-label", `View ${photo.name}`);
       const image = document.createElement("img");
-      image.src = photo.url;
+      image.src = "../logos/white_square.png";
+      image.dataset.src = photo.url;
+      image.className = "lazy";
       image.alt = photo.name;
-      image.loading = "lazy";
       image.decoding = "async";
       if (photo.width && photo.height) image.width = photo.width;
       if (photo.width && photo.height) image.height = photo.height;
@@ -116,6 +132,8 @@
       button.addEventListener("click", () => openPhoto(index));
       item.append(button);
       grid.append(item);
+      if (lazyImageObserver) lazyImageObserver.observe(image);
+      else image.src = image.dataset.src;
     });
     if (window.jQuery?.fn?.isotope) {
       window.jQuery(grid).isotope({ itemSelector: ".p-item", percentPosition: true, masonry: { columnWidth: ".grid-sizer" } });
