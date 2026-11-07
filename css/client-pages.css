@@ -95,7 +95,6 @@ body.client-gallery-loaded #client-gallery-count { display: none; }
 #client-photo-viewer .viewer-previous { left: 19px; top: 47%; }
 #client-photo-viewer .viewer-next { right: 19px; top: 47%; }
 .client-viewer-caption { position: absolute; bottom: 18px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 26px; color: #d3ccc7; font-size: 12px; }
-.client-viewer-caption a { color: #eee; text-decoration: underline; }
 
 @media (max-width: 600px) {
   .client-gallery-heading { padding: 10px 0 16px; }

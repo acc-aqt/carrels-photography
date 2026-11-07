@@ -50,7 +50,8 @@
   const count = document.querySelector("#client-gallery-count");
   const passwordPanel = document.querySelector("#gallery-password-panel");
   const content = document.querySelector("#gallery-content");
-  const download = document.querySelector("#download-all-images");
+  const lowResDownload = document.querySelector("#download-all-lowres");
+  const highResDownload = document.querySelector("#download-all-highres");
   const viewer = document.querySelector("#client-photo-viewer");
   let photos = [];
   let current = 0;
@@ -82,9 +83,6 @@
     image.src = photo.url;
     image.alt = photo.name;
     viewer.querySelector(".viewer-count").textContent = `${current + 1} / ${photos.length}`;
-    const save = viewer.querySelector(".viewer-download");
-    save.href = photo.url;
-    save.download = photo.name.split("/").pop();
     viewer.showModal();
   }
   viewer.querySelector(".viewer-close").addEventListener("click", () => viewer.close());
@@ -104,7 +102,10 @@
     title.textContent = data.title;
     photos = data.images.map((photo) => ({ ...photo, url: addToken(photo.url, token) }));
     count.textContent = `${photos.length} photographs`;
-    download.href = addToken(`${api}/download-all/${encodeURIComponent(slug)}`, token);
+    lowResDownload.href = addToken(`${api}/download-all/${encodeURIComponent(slug)}`, token);
+    lowResDownload.hidden = photos.length === 0;
+    highResDownload.hidden = !data.hasHighResArchive;
+    if (data.hasHighResArchive) highResDownload.href = addToken(`${api}/download-highres/${encodeURIComponent(slug)}`, token);
     grid.replaceChildren();
     const sizer = document.createElement("div");
     sizer.className = "grid-sizer";
