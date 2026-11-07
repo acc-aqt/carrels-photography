@@ -73,7 +73,7 @@
           image.removeAttribute("data-src");
           observer.unobserve(image);
         });
-      }, { rootMargin: "2500px 0px" })
+      }, { rootMargin: "800px 0px" })
     : null;
 
   function openPhoto(index) {
@@ -155,7 +155,11 @@
     content.hidden = true;
     count.textContent = "Enter the password to open your gallery.";
   } else {
-    loadGallery(session).then(() => { passwordPanel.hidden = true; content.hidden = false; }).catch((error) => {
+    // Keep the grid visible while adding observed images. IntersectionObserver
+    // treats targets in a display:none subtree as intersecting, which would
+    // start every full-size image request at once.
+    content.hidden = false;
+    loadGallery(session).then(() => { passwordPanel.hidden = true; }).catch((error) => {
       sessionStorage.removeItem(tokenKey(slug));
       passwordPanel.hidden = false;
       content.hidden = true;
