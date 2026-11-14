@@ -2,13 +2,9 @@
 from __future__ import annotations
 
 import argparse
-import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-
-# Attributes that commonly contain file paths in HTML
-ATTRS = ("src", "href", "data-src", "data-href", "poster")
 
 # crude but effective attribute matcher: attr="..."/attr='...'
 ATTR_RE = re.compile(
@@ -45,9 +41,6 @@ def extract_local_paths_from_html(html_text: str) -> set[str]:
         if not p or p.startswith("#"):
             continue
 
-        # normalize: remove leading "/" (treat as repo-relative)
-        p = p.lstrip("/")
-
         paths.add(p)
 
     return paths
@@ -61,8 +54,9 @@ def gather_referenced_files(html_files: list[Path], repo_root: Path) -> set[Path
         rel_paths = extract_local_paths_from_html(text)
 
         for rel in rel_paths:
-            # Resolve relative to repo root (your HTML uses repo-relative paths like images/...)
-            candidate = (repo_root / rel).resolve()
+            # "/images/x.jpg" is site-root-relative; "images/x.jpg" is relative to the HTML file's folder.
+            base = repo_root if rel.startswith("/") else html_file.parent
+            candidate = (base / rel.lstrip("/")).resolve()
 
             # keep only things inside repo root
             try:
@@ -100,9 +94,9 @@ def main() -> None:
         help="Folder to clean, e.g. images/slovenia",
     )
     ap.add_argument(
-        "--dry-run",
+        "--delete",
         action="store_true",
-        help="Do not delete; just print what would be deleted.",
+        help="Actually delete the listed files. Without this flag the script only prints them.",
     )
     ap.add_argument(
         "--keep",
@@ -163,8 +157,8 @@ def main() -> None:
         rel = f.resolve().relative_to(repo_root)
         print(f"DELETE: {rel}")
 
-    if args.dry_run:
-        print("\nDry-run: no files deleted.")
+    if not args.delete:
+        print("\nDry run: no files deleted. Re-run with --delete to delete them.")
         return
 
     # Delete
